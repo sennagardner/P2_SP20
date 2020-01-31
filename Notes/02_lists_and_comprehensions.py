@@ -175,3 +175,4 @@ if "P" in last:
 
 for letter in first:
     print(letter)
+
