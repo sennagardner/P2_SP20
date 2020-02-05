@@ -44,35 +44,29 @@ print(top_ten)
 # PROBLEM 4 (4pts)
 # Find the number which appears most often in num_list?
 
-from statistics import mode
-
-def most_common(num_list):
-    return (mode(num_list))
-
-print(most_common(num_list))
+my_count = [num_list.count(x) for x in num_list]
+print(my_count)
+print(num_list[my_count.index(max(my_count))])
 
 # CHALLENGE PROBLEMS (2pts)
 # TOUGH PROBLEMS, BUT FEW POINTS
 
 # Find the number of prime numbers in num_list?
 # Hint: One way is to just start removing the ones that aren't
-for num in num_list:
-    if num % 2 == 0:
-        num_list.remove(num)
-for num in num_list:
-    if num % 3 == 0:
-        num_list.remove(num)
-for num in num_list:
-    if num % 4 == 0:
-        num_list.remove(num)
-for num in num_list:
-    if num % 5 == 0:
-        num_list.remove(num)
-for num in num_list:
-    if num % 7 == 0:
-        num_list.remove(num)
+for i in range(2, 10000):
+    for num in num_list:
+        if num % i == 0:
+            num_list.remove(num)
+prime_numbers = len(num_list)
+print(prime_numbers)
 print(num_list)
 
-# Find the number of palindromes
+# Find the number of palindrome
 # Hint: This may be easier to do with strings
 
+palindrome_count = 0
+for x in range(len(num_list)):
+    t = str(num_list[x])
+    if t[0] == t[3] and t[2] == t[1]:
+        palindrome_count += 1
+print(palindrome_count)
