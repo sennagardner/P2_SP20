@@ -7,7 +7,7 @@
 my_list = [x for x in range(101)]
 print(my_list)
 # b) Make a list of even numbers from 20 to 40
-my_list2 = [x for x in range(20, 40) if x % 2 == 0]
+my_list2 = [x for x in range(20, 41) if x % 2 == 0]
 print(my_list2)
 # c) Make a list of squares from 1 to 100 (1 ** 2 to 100 ** 2)
 my_list3 = [x ** 2 for x in range(101)]
@@ -45,7 +45,6 @@ print(top_ten)
 # Find the number which appears most often in num_list?
 
 my_count = [num_list.count(x) for x in num_list]
-print(my_count)
 print(num_list[my_count.index(max(my_count))])
 
 # CHALLENGE PROBLEMS (2pts)
@@ -59,7 +58,6 @@ for i in range(2, 10000):
             num_list.remove(num)
 prime_numbers = len(num_list)
 print(prime_numbers)
-print(num_list)
 
 # Find the number of palindrome
 # Hint: This may be easier to do with strings
