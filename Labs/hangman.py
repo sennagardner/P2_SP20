@@ -1,24 +1,5 @@
 # Hangman game
 import random
-# PSEUDOCODE
-# setup your game by doing the following
-# make a word list for your game
-word_list = ["apple", "banana", "grape", "strawberry", "pineapple", "mango", "blueberry", "melon", "raspberry"]
-# grab a random word from your list and store it as a variable
-my_word = word_list[random.randrange(len(word_list))]
-print(my_word)
-# in a loop, do the following
-# display the hangman using the gallows
-# display the used letters so the user knows what has been selected
-# display the length of the word to the user using blank spaces and used letters
-# prompt the user to guess a letter
-# don't allow the user to select the same letter twice
-# if the guess is incorrect increment incorrect_guesses by 1
-# if the incorrect_guesses is greater than 8, tell the user they lost and exit the program
-# if the user gets all the correct letters, tell the user they won
-
-# ask if they want to play again
-
 gallows = [
     '''
       +---+
@@ -85,8 +66,56 @@ gallows = [
     '''
     ]
 
-print(gallows[4])
+# make a list of words
+word_list = ["apple", "banana", "grape", "strawberry", "pineapple", "mango", "blueberry", "melon", "raspberry"]
+word_list = [x.upper() for x in word_list]
 
-abcs = [chr(x) for x in range(65, 65 + 26)]
-print(abcs)
-for letter in "USEDLETTERS": print(letter, end=" , ")
+# pick a random word
+word = word_list[random.randrange(8)]
+word_letters = []
+guessed_letters = []
+incorrect_guess = 0
+hangman_level = 0
+done = False
+for i in range(len(word)):
+    print("_ ", end="")
+
+
+while not done:
+    print(gallows[hangman_level])
+    correct_guesses = 0
+    letters_remaining = len(word)
+    guess = input("\nPick a letter: ")
+    if guess.lower() in guessed_letters:
+        print("You already guessed that. Pick another letter.")
+    if guess.lower() not in guessed_letters:
+        guessed_letters.append(guess)
+    if guess.lower() in word.lower():
+        if guess.lower() not in guessed_letters:
+            correct_guesses += 1
+        word_letters.append(guess.lower())
+    else:
+        incorrect_guess += 1
+        hangman_level += 1
+    for letter in word.lower():
+        if letter in word_letters:
+            print(letter + " ", end="")
+            letters_remaining -= 1
+        else:
+            print("__", end=" ")
+
+
+    # check for a win or loss
+
+    if incorrect_guess >= 6:
+        print("You lose")
+        done = True
+
+
+    if letters_remaining == 0:
+        done = True
+        print("You win! Want to play again?")
+
+
+
+
