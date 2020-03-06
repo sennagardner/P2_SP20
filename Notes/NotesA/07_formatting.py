@@ -26,7 +26,7 @@ for i in range(20):
 # precision and datatype (d dec/int, f float, b binary)
 for i in range(20):
     c = random.random() * 1000
-    print("{:.3f}".format(c)) # 14 spacees to three decimals as a float
+    print("{:.3f}".format(c)) # 14 spaces to three decimals as a float
 
 for i in range(20):
     c = random.randrange(1000)
