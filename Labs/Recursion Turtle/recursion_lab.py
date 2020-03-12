@@ -71,8 +71,8 @@ my_screen = turtle.Screen()
 my_screen.bgcolor('white')
 
 my_escherfractal.up()
-my_escherfractal.down()
 my_escherfractal.goto(200, -200)
+my_escherfractal.down()
 my_escherfractal.setheading(180)
 
 
@@ -102,8 +102,8 @@ my_screen = turtle.Screen()
 my_screen.bgcolor("white")
 
 my_fractal.up()
-my_fractal.down()
 my_fractal.goto(-120, -200)
+my_fractal.down()
 my_fractal.setheading(120)
 
 def draw_spiral(length, depth):
