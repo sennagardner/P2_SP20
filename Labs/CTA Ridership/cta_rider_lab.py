@@ -38,5 +38,22 @@ print(rail_usage)
 print(bus_usage)
 print(total_ridership)
 
+graph = plt.figure(1, tight_layout=True)
+
+plt.plot(years, rail_usage, label="RAIL")
+plt.plot(years, bus_usage, label="BUS")
+plt.plot(years, total_ridership, label="TOTAL")
+
+plt.xlabel('Year')
+plt.ylabel('Ridership')
+plt.title('CTA Ridership from 2008-2018 on Bus, Rail and Total')
+plt.legend(fancybox=True, shadow=True)
+plt.axis([2008, 2018, 0, 550000000])
+
+plt.show()
 
 
+#6
+# I notice that as rail usage increases, bus usage decreases. The discrepency between the two values seems to decrease as time goes on.
+# This could be the case because people want to avoid traffic so they turn to taking the train, which never interacts with traffic.
+# I also notice a steady decrease in overall usage. When I think about my own personal life, I have decreased my usage of public transportation because of how available things like Uber have become, so maybe that is true for others as well.
