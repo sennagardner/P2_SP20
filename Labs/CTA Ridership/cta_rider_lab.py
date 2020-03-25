@@ -14,3 +14,29 @@ It has been updated with 2018 data, but not yet with 2019 unfortunately
 5  Add a legend to show data represented by each of the three lines. (4pts)
 6  What trend or trends do you see in the data?  Offer a hypotheses which might explain the trend(s). Just add a comment here to explain. (2pts)
 '''
+
+import csv
+import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
+
+plt.figure(1)
+
+with open("CTA_-_Ridership_-_Annual_Boarding_Totals (1).csv") as f:
+    cr = csv.reader(f)
+    data = list(cr)
+
+header = data.pop(0)
+print(header)
+print(data)
+
+years = [int(x[0]) for x in data[20:]]
+print(years)
+rail_usage = [int(x[3]) for x in data[20:]]
+bus_usage = [int(x[1]) for x in data[20:]]
+total_ridership = [int(bus_usage[x]) + int(rail_usage[x]) for x in range(len(bus_usage))]
+print(rail_usage)
+print(bus_usage)
+print(total_ridership)
+
+
+
