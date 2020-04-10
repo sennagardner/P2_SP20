@@ -39,3 +39,64 @@ Note 2:  This is a tough assignment to do on your own.  Do your best with what y
 '''
 
 
+import csv
+import matplotlib.pyplot as plt
+import numpy as np
+
+
+with open("Chicago_Energy_Benchmarking.csv") as f:
+    reader = csv.reader(f, delimiter=",")
+    data = list(reader)
+
+
+header = data.pop(0)
+print(header)
+
+new_data = []
+
+plt.figure("Chicago School GHG Emissions", figsize=(12, 6))
+# plt.scatter(building_sf, total_emissions)
+
+plt.ylabel("Total Emissions")
+plt.xlabel("Total Square Footage")
+plt.title("Total Emissions v. Total Square Footage")
+plt.grid(color="black")
+
+for school in data:
+    try:
+        float(school[24])
+        float(school[10])
+        if school[9] == "K-12 School" and school[0] == "2018":
+            new_data.append(school)
+    except:
+        print(school[2], "invalid data")
+
+new_data.sort(key=lambda x: float(x[25]), reverse=True)
+
+building_sf = [float(x[10]) for x in new_data]
+total_emissions = [float(x[24]) for x in new_data]
+names = [x[2] for x in new_data]
+
+
+color = []
+for i in range(len(new_data)):
+    if new_data[i][2] == "Francis W Parker School":
+        color.append("blue")
+    elif i < 30:
+        color.append("red")
+    else:
+        color.append("green")
+
+plt.annotate(names[names.index("Francis W Parker School")], xy=(building_sf[names.index("Francis W Parker School")], total_emissions[names.index("Francis W Parker School")]))
+
+plt.scatter(building_sf, total_emissions, alpha = 0.3, c=color)
+plt.figure(1, tight_layout=True)
+
+p = np.polyfit(building_sf, total_emissions, 1)
+print(p)
+
+x = [x for x in range(1000000)]
+y = [p[0] * y + p[1] for y in x]
+
+plt.plot(x, y)
+plt.show()
