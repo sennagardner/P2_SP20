@@ -1,88 +1,101 @@
 # Dictionaries (dict)
 
-# list, tuple, int, float, bool, str, set, dict
+# str, int, bool, list, tuple, dict, set, object
 
-# sets (not generally used often)
-# a unique list of items (no repeats)
-# uses {} instead of []
+# Quick look at sets
+# not used widely in Python
+# sets store UNIQUE values as unordered group
+import random
 
-my_set = {1, 2, 3, 4, 4, 5}
+my_set = {1, 2, 3, 4, 4, 5}  # eliminated duplicates
 print(my_set)
 
-my_list = ['milk', 'toilet paper', 'yeast', 'strawberries', 'milk']
+# one very specific use of a set
+my_list = [6, 7, 8, 9, 8, 7]  # list with duplicates
 print(set(my_list))
 
-# get rid of duplicates
-my_list = list(set(my_list))
+my_list = list(set(my_list))  # list minus the duplicates (UNIQUE)
 print(my_list)
-print(type(my_list))
 
 
-# Dictionaries
-# why use them?
-# They are unordered (unlike a list)
-# {key1: val1, key2: val2...}
-mr_lee = ["Aaron", 46, 'English', 'Python']
-mr_lee = {'first name': 'Aaron', 'age': 46, "spoken language":['English', 'Pig Latin'], 'fav prog lang': 'Python'}
-print(mr_lee)
+# Dictionaries are just unordered collections of key: value info
 
-# TV shows
-the_office = {'genre': ['Mocumentary', 'Sitcom'],
-              'developed by': 'Greg Daniels',
-              'starring': ['Steve Carell' 'Rainn Wilson', 'John Krasinski', 'Jenna Fischer']
-              }
+# Why use a dict over list
+mr_lee = ['Aaron', 'Lee', 46, ['Python', 'SQL']]
+mr_leed = {'first': 'Aaron', 'last': 'Lee', 'age': 46, 'fav_prog_lang': ['Python', 'SQL']}
 
-# access a dict
-print(the_office['genre'])
-# print(the_office[0]) # produces error (keyerror)
+# structure {key1: val1, key2: val2...}
 
-# add to a dictionary
-the_office['no seasons'] = 9
-print(the_office)
+# Accessing values
+print(mr_leed['age'])  # index a dict using the key
+print(mr_leed['fav_prog_lang'][1])
 
-the_office['title'] = "The Office"
+# iterable with the keys
+for key in mr_leed:
+    print(mr_leed[key])
 
-# change value
-the_office['no seasons'] += 1
-print(the_office)
+# adding to a dict
+mr_leed['spoken_langs'] = ['English', 'Pig Latin']
+print(mr_leed)
 
-# add to values
-the_office['starring'].append("Mindy Kaling")
-print(the_office)
+# cannot be access by index number
+#  print(mr_leed[0])  # gives a keyerror if you don't know the key
 
-# what are my keys?
-print()
-print(the_office.keys()) # iterable dict_key object
-print(the_office.values()) # dict_values object
+# Build a simple dict object
 
-# next show
-parks_rec = {"title": "Parks and Recreation", 'created by': ["Greg Daniels", 'Michael Schur']}
+community = {'genre': ['Comedy'],
+             'creators': ['Dan Harmon'],
+             'starring': ['Joel McHale', 'Gillian Jacobs', 'Danny Pudi'],
+             'no_season': 6
+             }
 
-shows = [the_office, parks_rec]
-print()
-print(shows)
+community['no_episodes'] = 110
+print(community['no_episodes'])
 
-# dictionaries are iterable
-for key in the_office:
-    print(the_office[key])
-
-# even comprehensions work
-new_dict = {x: "Hi" for x in range(10)}
-print(new_dict)
-
-# popping items
-print(the_office.pop('genre'))
-print(the_office)
+# change items in a dict
+community['starring'].append('Alison Brie')
+print(community['starring'])
 
 # increment item
-the_office['no episodes'] += 1
-print(the_office['no episodes'])
+community['no_episodes'] += 1
+print(community['no_episodes'])
 
 # keys method
-print(the_office.keys())
-print(list(the_office.keys()))
+print(community.keys())
+print(list(community.keys()))
 
 # values method
-print(the_office.values())
-print(list(the_office.values()))
+print(community.values())
+print(list(community.values()))
+
+#  dictionary to track values
+my_list = [random.choice(['heads', 'tails']) for x in range(50)]
+print(my_list)
+
+my_flips_dict = {}
+
+for flip in my_list:
+    if flip == 'heads':
+        if flip in my_flips_dict:
+            my_flips_dict['heads'] += 1
+        else:
+            my_flips_dict['heads'] = 1
+    if flip == 'tails':
+        if flip in my_flips_dict:
+            my_flips_dict['tails'] += 1
+        else:
+            my_flips_dict['tails'] = 1
+
+
+
+print(my_flips_dict)
+
+
+
+
+
+
+
+
+
 
